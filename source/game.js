@@ -16,7 +16,7 @@ function init(){
   canvas = document.getElementById("canvas"); //конвенция
   screen = canvas.getContext("2d");
   player = new Player();
-  coin= new Blockcoin();
+  coin= new CoinBlock();
   enemy = new Enemy();
   wallsHW = 30;    //ширина, высота стен
 
@@ -77,124 +77,6 @@ function gameOver(){
   screen.fillText("Game Over", 280, 200);
   screen.fillText("Your score = " + player.maxScore.toFixed(3), 190, 300);
 }
-
-
-
-
-
-
-
-function Player(){
-  this.x = 280;
-  this.y = 400;
-  this.width = 50;
-  this.height = 50;
-  this.speed = 10;
-  this.toWalls = false;
-
-  this.maxScore = 1;
-  this.score = 1;
-}
-
-Player.prototype.move = function(){
-  if(up == true & this.y>0){
-    this.y -= this.speed;
-    }
-  if(down == true & this.y<(canvas.height - this.height)){
-    this.y += this.speed;
-  }
-  if(left == true & this.x>0){
-    this.x -= this.speed;
-  }
-  if(right == true & this.x<canvas.width - this.width){
-    this.x += this.speed;
-  }
-}
-
-Player.prototype.draw = function(){
-
-  screen.drawImage(playerSp, 0, 0, 50, 50, this.x, this.y, this.width, this.height);
-  /*screen.fillStyle = "#E4E4E4";
-  screen.fillRect(this.x, this.y, this.width, this.height);*/
-}
-
-
-
-
-
-
-function Blockcoin(){
-  this.x = 100;
-  this.y = 100;
-  this.width = 25;
-  this.height = 25;
-
-  this.status;
-}
-
-Blockcoin.prototype.draw = function(){
-    screen.drawImage(coinSp, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
-    /*screen.fillStyle = "#D82126";
-    screen.fillRect(this.x, this.y, this.width, this.height);*/
-}
-
-Blockcoin.prototype.takecoin = function(){
-  if ((this.x <= (player.x + player.width))& (this.x >= (player.x - this.width)) & (this.y <= (player.y + player.width)) & (this.y >= (player.y - this.height))){
-    player.score += 1;
-    coin.spawncoin();
-    console.log(coin.x, coin.y, player.score);
-  }
-}
-
-Blockcoin.prototype.spawncoin = function(){
-  this.x = Math.floor(Math.random() * (canvas.width - this.width));
-  this.y = Math.floor(Math.random() * (canvas.height - this.height));
-  for (var i = 0; i < 10; i++){
-    if ((this.x < wallsX[i]+30) & (this.x > wallsX[i]-this.width) &(this.y < wallsY[i]+30) & (this.y > wallsY[i]-this.height)) {console.log("test spawncoin"); coin.spawncoin();}
-  }
-}
-
-
-
-
-
-function Enemy(){
-  this.x = player.x + 12;
-  this.y = player.y + 150;
-  this.width = 25;
-  this.height = 25;
-  this.collision = false;
-  this.collisionRate = 0;
-
-  this.speed = 5; //  PX/Iteration
-}
-
-Enemy.prototype.draw = function(){
-  screen.drawImage(enemySp, 0, 0, 25, 25, this.x, this.y, this.width, this.height);
-  /*screen.fillStyle = "#83DFD4";
-  screen.fillRect(this.x, this.y, this.width, this.height);*/
-}
-
-Enemy.prototype.follow = function(){
-  if (this.x < player.x+15){
-    this.x += this.speed;
-  }
-  if (this.x > player.x+15){
-    this.x -= this.speed;
-  }
-  if (this.y < player.y+15){
-    this.y += this.speed;
-  }
-  if (this.y > player.y+15){
-    this.y -= this.speed;
-  }
-  if (this.x<player.x+player.width & this.x>player.x-this.width & this.y < player.y+player.height & this.y > player.y-this.height){player.score -= 0.05}
-}
-
-Enemy.prototype.collision = function() {
-}
-
-
 
 
 function lvlSpawn(walls){
