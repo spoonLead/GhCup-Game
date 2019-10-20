@@ -1,13 +1,13 @@
 class Wall{
   constructor(){
-    this.x = this.getRandomX;
-    this.y = this.getRandomY;
+    this.x = this.getRandomX();
+    this.y = this.getRandomY();
     this.width = 30;
     this.height = 30;
   }
 
   process(){
-    
+
   }
 
   draw(){
