@@ -20,19 +20,17 @@ class Player{
   }
 
   move(){
-    Player.prototype.move = function(){
-      if(up == true & this.y>0){
-        this.y -= this.speed;
-        }
-      if(down == true & this.y<(canvas.height - this.height)){
-        this.y += this.speed;
+    if(up == true & this.y>0){
+      this.y -= this.speed;
       }
-      if(left == true & this.x>0){
-        this.x -= this.speed;
-      }
-      if(right == true & this.x<canvas.width - this.width){
-        this.x += this.speed;
-      }
+    if(down == true & this.y<(canvas.height - this.height)){
+      this.y += this.speed;
+    }
+    if(left == true & this.x>0){
+      this.x -= this.speed;
+    }
+    if(right == true & this.x<canvas.width - this.width){
+      this.x += this.speed;
     }
   }
 
