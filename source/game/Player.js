@@ -5,9 +5,15 @@ function Player(){
   this.height = 50;
   this.speed = 10;
   this.toWalls = false;
+  this.sprite = new Image();
+  this.sprite.src = "img/player.jpg";
 
   this.maxScore = 1;
   this.score = 1;
+}
+
+Player.prototype.process = function(){
+  this.move();
 }
 
 Player.prototype.move = function(){
@@ -27,7 +33,7 @@ Player.prototype.move = function(){
 
 Player.prototype.draw = function(){
 
-  screen.drawImage(playerSp, 0, 0, 50, 50, this.x, this.y, this.width, this.height);
+  screen.drawImage(this.sprite, 0, 0, 50, 50, this.x, this.y, this.width, this.height);
   /*screen.fillStyle = "#E4E4E4";
   screen.fillRect(this.x, this.y, this.width, this.height);*/
 }

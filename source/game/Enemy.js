@@ -1,18 +1,27 @@
 function Enemy(){
-  this.x = player.x + 12;
-  this.y = player.y + 150;
+  //his.x = player.x + 12;
+  //this.y = player.y + 150;
+  this.x = 10;
+  this.y = 10;
+
   this.width = 25;
   this.height = 25;
   this.collision = false;
   this.collisionRate = 0;
+  this.sprite = new Image();
+  this.sprite.src = "img/enemy.jpg";
 
   this.speed = 5; //  PX/Iteration
 }
 
 Enemy.prototype.draw = function(){
-  screen.drawImage(enemySp, 0, 0, 25, 25, this.x, this.y, this.width, this.height);
+  screen.drawImage(this.sprite, 0, 0, 25, 25, this.x, this.y, this.width, this.height);
   /*screen.fillStyle = "#83DFD4";
   screen.fillRect(this.x, this.y, this.width, this.height);*/
+}
+
+Enemy.prototype.process = function(){
+  this.follow()
 }
 
 Enemy.prototype.follow = function(){
