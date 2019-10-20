@@ -1,8 +1,8 @@
 class Enemy{
-  
+
   constructor(){
-    this.x = player.x + 12;
-    this.y = player.y + 150;
+    this.x = PLAYER.x + 12;
+    this.y = PLAYER.y + 150;
     this.width = 25;
     this.height = 25;
 
@@ -21,19 +21,19 @@ class Enemy{
   }
 
   follow(){
-    if (this.x < player.x+15){
+    if (this.x < PLAYER.x+15){
       this.x += this.speed;
     }
-    if (this.x > player.x+15){
+    if (this.x > PLAYER.x+15){
       this.x -= this.speed;
     }
-    if (this.y < player.y+15){
+    if (this.y < PLAYER.y+15){
       this.y += this.speed;
     }
-    if (this.y > player.y+15){
+    if (this.y > PLAYER.y+15){
       this.y -= this.speed;
     }
-    if (this.x<player.x+player.width & this.x>player.x-this.width & this.y < player.y+player.height & this.y > player.y-this.height){player.score -= 0.05}
+    if (this.x<PLAYER.x+PLAYER.width & this.x>PLAYER.x-this.width & this.y < PLAYER.y+PLAYER.height & this.y > PLAYER.y-this.height){PLAYER.score -= 0.05}
   }
 
 

@@ -20,8 +20,8 @@ CoinBlock.prototype.process = function(){
 }
 
 CoinBlock.prototype.takecoin = function(){
-  if ((this.x <= (player.x + player.width)) & (this.x >= (player.x - this.width)) & (this.y <= (player.y + player.width)) & (this.y >= (player.y - this.height))){
-    player.score += 1;
+  if ((this.x <= (PLAYER.x + PLAYER.width)) & (this.x >= (PLAYER.x - this.width)) & (this.y <= (PLAYER.y + PLAYER.width)) & (this.y >= (PLAYER.y - this.height))){
+    PLAYER.score += 1;
     this.spawnCoin();
   }
 }

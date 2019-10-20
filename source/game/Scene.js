@@ -18,6 +18,4 @@ class Scene{
       this.objectsGroup[i].process()
     }
   }
-
-
 }

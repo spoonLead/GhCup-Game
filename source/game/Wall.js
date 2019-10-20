@@ -16,10 +16,10 @@ class Wall{
   }
 
   getRandomX(){
-    return ((Math.floor(((Math.random() * (canvas.width - player.width))/player.speed)))*player.speed)
+    return ((Math.floor(((Math.random() * (canvas.width - PLAYER.width))/PLAYER.speed)))*PLAYER.speed)
   }
 
   getRandomY(){
-    return ((Math.floor(((Math.random() * (canvas.height - player.height))/player.speed)))*player.speed)
+    return ((Math.floor(((Math.random() * (canvas.height - PLAYER.height))/PLAYER.speed)))*PLAYER.speed)
   }
 }

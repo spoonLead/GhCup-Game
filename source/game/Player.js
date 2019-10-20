@@ -9,7 +9,7 @@ class Player{
     this.toWalls = false;
 
     this.sprite = new Image();
-    this.sprite.src = "img/player.jpg";
+    this.sprite.src = "img/PLAYER.jpg";
 
     this.maxScore = 1;
     this.score = 1;
