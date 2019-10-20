@@ -5,47 +5,37 @@ var screen;
 var up,down,left,right, wallsHW;   //flags for control
 var gameFlag = true;
 
-var player; var playerSp = new Image(); playerSp.src = "img/player.jpg";
-var coin; var coinSp = new Image(); coinSp.src = "img/coin.png";
-var enemy; var enemySp = new Image(); enemySp.src = "img/enemy.jpg";
-
-var wallsX = [];
-var wallsY = [];
-
 function init(){
   canvas = document.getElementById("canvas"); //конвенция
   screen = canvas.getContext("2d");
-  player = new Player();
-  coin= new CoinBlock();
-  enemy = new Enemy();
-  wallsHW = 30;    //ширина, высота стен
 
-  lvlSpawn(10);
-  console.log(wallsX);
+  scene = new Scene();
+  scene.addObject(new Player());
+  scene.addObject(new CoinBlock());
+  scene.addObject(new Enemy());
+  scene.addObject(new Wall());
 
-  tick();       //игровой цикл
+  gameLoop();       //игровой цикл
 
 }
-function tick(){
+
+function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
   keyListener();
-  move();
+  //move();
 
-  if (gameFlag == true & player.score > 0){
-    lvlDraw(10);
-    coin.draw();
-    enemy.draw();
-    player.draw();
+  if (gameFlag == true /*& player.score > 0*/){
+    scene.draw()
 
-    enemy.follow();
-    coin.takecoin();
-    scoreDraw();
-    player.score -=0.001
-    if (player.score > player.maxScore){player.maxScore = player.score;}
+    //enemy.follow();
+    //coin.takecoin();
+    //scoreDraw();
+    //player.score -=0.001
+    //if (player.score > player.maxScore){player.maxScore = player.score;}
   }
   else{gameOver();}
 
-  requestAnimationFrame(tick);  //ограничивает fps
+  requestAnimationFrame(gameLoop);  //ограничивает fps
 }
 
 function keyListener(){
@@ -75,19 +65,19 @@ function gameOver(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "50px Verdana";
   screen.fillText("Game Over", 280, 200);
-  screen.fillText("Your score = " + player.maxScore.toFixed(3), 190, 300);
+  //screen.fillText("Your score = " + player.maxScore.toFixed(3), 190, 300);
 }
 
 
-function lvlSpawn(walls){
-  this.Walls = walls;
-  for (var i = 0; i < walls;i++){
+function makeWalls(count){
+  this.count = count;
+  for (var i = 0; i < count;i++){
     wallsX[i] = (Math.floor(((Math.random() * (canvas.width - player.width))/player.speed)))*player.speed;
     wallsY[i] = (Math.floor(((Math.random() * (canvas.height - player.height))/player.speed)))*player.speed;
   }
 }
 
-function lvlDraw(walls){
+function wallsDraw(walls){
   screen.fillStyle = "#F0F0F0";
   for(var i = 0; i < walls; i++){
     screen.fillRect(wallsX[i], wallsY[i], 30, 30);
