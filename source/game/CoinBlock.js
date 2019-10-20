@@ -3,14 +3,20 @@ function CoinBlock(){
   this.y = 100;
   this.width = 25;
   this.height = 25;
+  this.sprite = new Image();
+  this.sprite.src = "img/coin.png";
 
   this.status;
 }
 
 CoinBlock.prototype.draw = function(){
-    screen.drawImage(coinSp, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
+    screen.drawImage(this.sprite, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
     /*screen.fillStyle = "#D82126";
     screen.fillRect(this.x, this.y, this.width, this.height);*/
+}
+
+CoinBlock.prototype.process = function(){
+  this.takecoin();
 }
 
 CoinBlock.prototype.takecoin = function(){
