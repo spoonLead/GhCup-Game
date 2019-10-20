@@ -4,34 +4,37 @@ var canvas;
 var screen;
 var up,down,left,right, wallsHW;   //flags for control
 var gameFlag = true;
+var scene;
+var player;
 
 function init(){
   canvas = document.getElementById("canvas"); //конвенция
   screen = canvas.getContext("2d");
 
   scene = new Scene();
-  scene.addObject(new Player());
-  scene.addObject(new CoinBlock());
-  scene.addObject(new Enemy());
-  scene.addObject(new Wall());
+  scene.addObject(player = new Player());
+  scene.addObject(coinBlock = new CoinBlock());
+  scene.addObject(enemy = new Enemy());
+  scene.addObject(wall = new Wall());
 
   gameLoop();       //игровой цикл
 
 }
 
 function gameLoop(){
+  player = scene.objectsGroup[getPlayerIdFromScene()]
+
   screen.clearRect(0, 0, canvas.width, canvas.height);
   keyListener();
   //move();
 
-  if (gameFlag == true /*& player.score > 0*/){
+  if (gameFlag == true & player.score > 0){
     scene.draw()
+    scene.process()
 
-    //enemy.follow();
-    //coin.takecoin();
-    //scoreDraw();
-    //player.score -=0.001
-    //if (player.score > player.maxScore){player.maxScore = player.score;}
+    scoreDraw();
+    player.score -=0.001
+    if (player.score > player.maxScore){player.maxScore = player.score;}
   }
   else{gameOver();}
 
@@ -61,6 +64,10 @@ function keyListener(){
   }
 }
 
+function getPlayerIdFromScene(){
+  return scene.objectsGroup.indexOf(player)
+}
+
 function gameOver(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "50px Verdana";
@@ -69,21 +76,7 @@ function gameOver(){
 }
 
 
-function makeWalls(count){
-  this.count = count;
-  for (var i = 0; i < count;i++){
-    wallsX[i] = (Math.floor(((Math.random() * (canvas.width - player.width))/player.speed)))*player.speed;
-    wallsY[i] = (Math.floor(((Math.random() * (canvas.height - player.height))/player.speed)))*player.speed;
-  }
-}
-
-function wallsDraw(walls){
-  screen.fillStyle = "#F0F0F0";
-  for(var i = 0; i < walls; i++){
-    screen.fillRect(wallsX[i], wallsY[i], 30, 30);
-  }
-}
-
+//collision
 function move(){
   for(var i=0; i<10; i++){
     if((up == true) & (wallsY[i]+30==player.y) & (wallsX[i]>player.x-30) & (wallsX[i]<player.x+player.width)){
