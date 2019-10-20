@@ -20,17 +20,19 @@ CoinBlock.prototype.process = function(){
 }
 
 CoinBlock.prototype.takecoin = function(){
-  if ((this.x <= (player.x + player.width))& (this.x >= (player.x - this.width)) & (this.y <= (player.y + player.width)) & (this.y >= (player.y - this.height))){
+  if ((this.x <= (player.x + player.width)) & (this.x >= (player.x - this.width)) & (this.y <= (player.y + player.width)) & (this.y >= (player.y - this.height))){
     player.score += 1;
-    coin.spawncoin();
-    console.log(coin.x, coin.y, player.score);
+    this.spawnCoin();
   }
 }
 
-CoinBlock.prototype.spawncoin = function(){
+CoinBlock.prototype.spawnCoin = function(){
   this.x = Math.floor(Math.random() * (canvas.width - this.width));
   this.y = Math.floor(Math.random() * (canvas.height - this.height));
-  for (var i = 0; i < 10; i++){
-    if ((this.x < wallsX[i]+30) & (this.x > wallsX[i]-this.width) &(this.y < wallsY[i]+30) & (this.y > wallsY[i]-this.height)) {console.log("test spawncoin"); coin.spawncoin();}
+  for (var i = 0; i < scene.objectsGroup.length; i++){
+    if(scene.objectsGroup[i] == wall){
+      wall = scene.objectsGroup[i]
+      if ((this.x < wall.x+30) & (this.x > wall.x-this.width) & (this.y < wall.y+30) & (this.y > wall.y-this.height)) {console.log("test spawncoin"); coin.spawncoin();}
+    }
   }
 }
