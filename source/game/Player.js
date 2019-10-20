@@ -4,7 +4,7 @@ class Player{
     this.y = 400;
     this.width = 50;
     this.height = 50;
-    
+
     this.speed = 10;
     this.toWalls = false;
 
@@ -39,5 +39,13 @@ class Player{
 
   draw(){
       screen.drawImage(this.sprite, 0, 0, 50, 50, this.x, this.y, this.width, this.height);
+  }
+
+  getX(){
+    return this.x;
+  }
+
+  getY(){
+    return this.y;
   }
 }
