@@ -4,6 +4,7 @@ var canvas;
 var screen;
 var up,down,left,right, wallsHW;   //flags for control
 var gameFlag = true;
+var LAST_DOWN_KEY;
 var SCENE;
 var PLAYER;
 
