@@ -4,18 +4,18 @@ var canvas;
 var screen;
 var up,down,left,right, wallsHW;   //flags for control
 var gameFlag = true;
-var scene;
+var SCENE;
 var PLAYER;
 
 function init(){
   canvas = document.getElementById("canvas"); //конвенция
   screen = canvas.getContext("2d");
 
-  scene = new Scene();
-  scene.addObject(PLAYER = new Player());
-  scene.addObject(coinBlock = new CoinBlock());
-  scene.addObject(enemy = new Enemy());
-  scene.addObject(wall = new Wall());
+  SCENE = new Scene();
+  SCENE.addObject(PLAYER = new Player());
+  SCENE.addObject(coinBlock = new CoinBlock());
+  SCENE.addObject(enemy = new Enemy());
+  SCENE.addObject(wall = new Wall());
 
   gameLoop();       //игровой цикл
 }
@@ -26,8 +26,8 @@ function gameLoop(){
   //move();
 
   if (gameFlag == true & PLAYER.score > 0){
-    scene.draw()
-    scene.process()
+    SCENE.draw()
+    SCENE.process()
 
     scoreDraw();
     PLAYER.score -=0.001
@@ -61,8 +61,8 @@ function keyListener(){
   }
 }
 
-function getPLAYERIdFromScene(){
-  return scene.objectsGroup.indexOf(PLAYER)
+function getPLAYERIdFromSCENE(){
+  return SCENE.objectsGroup.indexOf(PLAYER)
 }
 
 function gameOver(){
