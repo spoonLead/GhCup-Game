@@ -24,7 +24,7 @@ function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
   keyListener();
   //move();
-
+  console.log(LAST_DOWN_KEY)
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
     SCENE.process()
@@ -36,29 +36,6 @@ function gameLoop(){
   else{gameOver();}
 
   requestAnimationFrame(gameLoop);  //ограничивает fps
-}
-
-function keyListener(){
-  window.onkeydown = function(e){
-    switch(e.keyCode){
-      case 37:
-        left = true;
-        right = down = up = false;
-      break;
-      case 38:
-        up = true;
-        right = left = down = false;
-      break;
-      case 39:
-        right = true;
-        left = up = down = false;
-      break;
-      case 40:
-        down = true;
-        left = right = up = false;
-      break;
-    }
-  }
 }
 
 function getPLAYERIdFromSCENE(){
