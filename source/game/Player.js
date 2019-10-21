@@ -20,16 +20,20 @@ class Player{
   }
 
   move(){
-    if(up == true & this.y>0){
+    // GO UP
+    if(LAST_DOWN_KEY == 38 & this.y>0){
       this.y -= this.speed;
       }
-    if(down == true & this.y<(canvas.height - this.height)){
+      //GO DOWN
+    if(LAST_DOWN_KEY == 40 & this.y<(canvas.height - this.height)){
       this.y += this.speed;
     }
-    if(left == true & this.x>0){
+    // GO LEFT
+    if(LAST_DOWN_KEY == 37 & this.x>0){
       this.x -= this.speed;
     }
-    if(right == true & this.x<canvas.width - this.width){
+    //GO RIGHT
+    if(LAST_DOWN_KEY == 39 & this.x<canvas.width - this.width){
       this.x += this.speed;
     }
   }
