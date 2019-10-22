@@ -25,7 +25,6 @@ function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
   keyListener();
   //move();
-  console.log(LAST_DOWN_KEY)
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
     SCENE.process()
