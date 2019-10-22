@@ -1,5 +1,6 @@
-class Player{
+class Player extends Drawable{
   constructor(){
+    super("img/PLAYER.jpg");
     this.x = 280;
     this.y = 400;
     this.width = 50;
@@ -8,8 +9,6 @@ class Player{
     this.speed = 10;
     this.toWalls = false;
 
-    this.sprite = new Image();
-    this.sprite.src = "img/PLAYER.jpg";
 
     this.maxScore = 1;
     this.score = 1;
@@ -36,11 +35,6 @@ class Player{
     if(LAST_DOWN_KEY == 39 & this.x<canvas.width - this.width){
       this.x += this.speed;
     }
-  }
-
-
-  draw(){
-      screen.drawImage(this.sprite, 0, 0, 50, 50, this.x, this.y, this.width, this.height);
   }
 
   getX(){

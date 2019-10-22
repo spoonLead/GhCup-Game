@@ -1,16 +1,13 @@
-class Enemy{
-
+class Enemy extends Drawable{
   constructor(){
+    super("img/enemy.jpg");
     this.x = PLAYER.x + 12;
     this.y = PLAYER.y + 150;
     this.width = 25;
-    this.height = 25;
+    this.height = 22;
 
     this.collision = false;
     this.collisionRate = 0;
-
-    this.sprite = new Image();
-    this.sprite.src = "img/enemy.jpg";
 
     this.speed = 5; //  PX/Iteration
   }
