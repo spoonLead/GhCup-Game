@@ -1,8 +1,9 @@
 
-class Drawable{
+class Drawable extends Phisycal{
   constructor(imagePath){
-      this.sprite = new Image();
-      this.sprite.src = imagePath;
+    super()
+    this.sprite = new Image();
+    this.sprite.src = imagePath;
   }
 
   draw(x, y, width, height){
