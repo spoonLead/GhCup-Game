@@ -16,7 +16,7 @@ class Phisycal{
   }
 
   hasTopCollisionWithObj(object){
-    if((object.y+30==this.y) & (object.x > this.x - 30) & (object.x < this.x + this.width))
+    if((object.y+object.height==this.y) & (object.x > this.x - object.width) & (object.x < this.x + this.width))
       return true
   }
 
@@ -32,7 +32,7 @@ class Phisycal{
   }
 
   hasDownCollisionWithObj(object){
-    if((object.y==this.y+this.height) & (object.x>this.x-30) & (object.x<this.x+this.width))
+    if((object.y==this.y+this.height) & (object.x>this.x-object.width) & (object.x<this.x+this.width))
       return true
   }
 
@@ -41,22 +41,31 @@ class Phisycal{
 
   hasRightCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
-      if(SCENE.objectsGroup[i] instanceof objClass){
-        if((SCENE.objectsGroup[i].x==PLAYER.x+PLAYER.width) & (SCENE.objectsGroup[i].y>PLAYER.y-30) & (SCENE.objectsGroup[i].y<PLAYER.y+PLAYER.height))
+      if(SCENE.objectsGroup[i] instanceof objClass)
+        if(this.hasRightCollisionWithObj(SCENE.objectsGroup[i]))
           return true
-      }
     }
   }
+
+  hasRightCollisionWithObj(object){
+    if((object.x==this.x+this.width) & (object.y>this.y-object.height) & (object.y<this.y+this.height))
+      return true
+  }
+
+
+
 
   hasLeftCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
-      if(SCENE.objectsGroup[i] instanceof objClass){
-        if((SCENE.objectsGroup[i].x==PLAYER.x-30) & (SCENE.objectsGroup[i].y>PLAYER.y-30) & (SCENE.objectsGroup[i].y<PLAYER.y+PLAYER.height))
+      if(SCENE.objectsGroup[i] instanceof objClass)
+        if(this.hasLeftCollisionWithObj(SCENE.objectsGroup[i]))
           return true
-      }
     }
   }
 
-
+  hasLeftCollisionWithObj(object){
+    if((object.x==this.x-object.width) & (object.y>this.y-object.height) & (object.y<this.y+this.height))
+      return true
+  }
 
 }
