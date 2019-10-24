@@ -6,7 +6,7 @@ class Phisycal{
     this.height;
   }
 
-  hasTopCollisionWithTypeOfGameObj(objType){
+  hasTopCollisionWithObj(objType){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] == objType)
         console.log(SCENE.objectsGroup[i])

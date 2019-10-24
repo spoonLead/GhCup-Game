@@ -16,6 +16,7 @@ class Player extends Drawable{
 
   process(){
     this.move();
+    this.hasTopCollisionWithObj(enemy)
   }
 
   move(){
