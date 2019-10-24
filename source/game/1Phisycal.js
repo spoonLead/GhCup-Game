@@ -6,13 +6,42 @@ class Phisycal{
     this.height;
   }
 
-  hasTopCollisionWithObj(objType){
+  hasTopCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
-      if(SCENE.objectsGroup[i] == objType)
-        console.log(SCENE.objectsGroup[i])
+      if(SCENE.objectsGroup[i] instanceof objClass){
+        if((SCENE.objectsGroup[i].y+30==this.y) & (SCENE.objectsGroup[i].x > this.x - 30) & (SCENE.objectsGroup[i].x < this.x + this.width))
+          return true
+      }
     }
-    //if((wallsY[i]+30==PLAYER.y) & (wallsX[i]>PLAYER.x-30) & (wallsX[i]<PLAYER.x+PLAYER.width)){
-  //    up = false;
-  //  }
   }
+
+  hasDownCollisionWithClassOfObj(objClass){
+    for(var i = 0; i < SCENE.objectsGroup.length; i++){
+      if(SCENE.objectsGroup[i] instanceof objClass){
+        if((SCENE.objectsGroup[i].y==PLAYER.y+PLAYER.height) & (SCENE.objectsGroup[i].x>PLAYER.x-30) & (SCENE.objectsGroup[i].x<PLAYER.x+PLAYER.width))
+          return true
+      }
+    }
+  }
+
+  hasRightCollisionWithClassOfObj(objClass){
+    for(var i = 0; i < SCENE.objectsGroup.length; i++){
+      if(SCENE.objectsGroup[i] instanceof objClass){
+        if((SCENE.objectsGroup[i].x==PLAYER.x+PLAYER.width) & (SCENE.objectsGroup[i].y>PLAYER.y-30) & (SCENE.objectsGroup[i].y<PLAYER.y+PLAYER.height))
+          return true
+      }
+    }
+  }
+
+  hasLeftCollisionWithClassOfObj(objClass){
+    for(var i = 0; i < SCENE.objectsGroup.length; i++){
+      if(SCENE.objectsGroup[i] instanceof objClass){
+        if((SCENE.objectsGroup[i].x==PLAYER.x-30) & (SCENE.objectsGroup[i].y>PLAYER.y-30) & (SCENE.objectsGroup[i].y<PLAYER.y+PLAYER.height))
+          return true
+      }
+    }
+  }
+
+
+
 }
