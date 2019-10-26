@@ -4,7 +4,6 @@ var canvas;
 var screen;
 var up,down,left,right, wallsHW;   //flags for control
 var gameFlag = true;
-var LAST_DOWN_KEY;
 var SCENE;
 var PLAYER;
 
@@ -25,14 +24,13 @@ function init(){
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
 
+
   gameLoop();       //игровой цикл
 }
 
 function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
-  keyListener();
-  //move();
-  if (gameFlag == true & PLAYER.score > 0){
+  if (gameFlag == true /*& PLAYER.score > 0*/){
     SCENE.draw()
     SCENE.process()
 
