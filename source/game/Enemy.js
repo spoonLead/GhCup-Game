@@ -12,11 +12,6 @@ class Enemy extends Drawable{
     this.speed = 5; //  PX/Iteration
   }
 
-
-  process(){
-    this.follow()
-  }
-
   follow(){
     if (this.x < PLAYER.x+15){
       this.x += this.speed;

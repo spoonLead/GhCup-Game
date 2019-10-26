@@ -14,10 +14,6 @@ class Player extends Drawable{
     this.score = 1;
   }
 
-  process(){
-    this.move();
-  }
-
   move(){
     // GO UP
     if(getLastDownedKey() == 38 & this.y>0)
