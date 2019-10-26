@@ -16,24 +16,23 @@ class Player extends Drawable{
 
   process(){
     this.move();
-    this.hasTopCollisionWithObj(enemy)
   }
 
   move(){
     // GO UP
-    if(LAST_DOWN_KEY == 38 & this.y>0){
+    if(getLastDownedKey() == 38 & this.y>0){
       this.y -= this.speed;
       }
       //GO DOWN
-    if(LAST_DOWN_KEY == 40 & this.y<(canvas.height - this.height)){
+    if(getLastDownedKey() == 40 & this.y<(canvas.height - this.height)){
       this.y += this.speed;
     }
     // GO LEFT
-    if(LAST_DOWN_KEY == 37 & this.x>0){
+    if(getLastDownedKey() == 37 & this.x>0){
       this.x -= this.speed;
     }
     //GO RIGHT
-    if(LAST_DOWN_KEY == 39 & this.x<canvas.width - this.width){
+    if(getLastDownedKey() == 39 & this.x<canvas.width - this.width){
       this.x += this.speed;
     }
   }
