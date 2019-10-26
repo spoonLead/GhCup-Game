@@ -13,12 +13,6 @@ CoinBlock.prototype.draw = function(){
     screen.drawImage(this.sprite, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
 }
 
-CoinBlock.prototype.takecoin = function(){
-  if ((this.x <= (PLAYER.x + PLAYER.width)) & (this.x >= (PLAYER.x - this.width)) & (this.y <= (PLAYER.y + PLAYER.width)) & (this.y >= (PLAYER.y - this.height))){
-    PLAYER.score += 1;
-    this.spawnCoin();
-  }
-}
 
 CoinBlock.prototype.spawnCoin = function(){
   this.x = Math.floor(Math.random() * (canvas.width - this.width));
