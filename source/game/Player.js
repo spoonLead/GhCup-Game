@@ -20,21 +20,24 @@ class Player extends Drawable{
 
   move(){
     // GO UP
-    if(getLastDownedKey() == 38 & this.y>0){
-      this.y -= this.speed;
-      }
+    if(getLastDownedKey() == 38 & this.y>0)
+      if(! this.hasTopCollisionWithClassOfObj(Wall))
+        this.y -= this.speed;
+
       //GO DOWN
-    if(getLastDownedKey() == 40 & this.y<(canvas.height - this.height)){
-      this.y += this.speed;
-    }
+    if(getLastDownedKey() == 40 & this.y<(canvas.height - this.height))
+      if(! this.hasDownCollisionWithClassOfObj(Wall))
+        this.y += this.speed;
+
     // GO LEFT
-    if(getLastDownedKey() == 37 & this.x>0){
-      this.x -= this.speed;
-    }
+    if(getLastDownedKey() == 37 & this.x>0)
+      if(! this.hasLeftCollisionWithClassOfObj(Wall))
+        this.x -= this.speed;
+
     //GO RIGHT
-    if(getLastDownedKey() == 39 & this.x<canvas.width - this.width){
+    if(getLastDownedKey() == 39 & this.x<canvas.width - this.width)
+      if(! this.hasRightCollisionWithClassOfObj(Wall))
       this.x += this.speed;
-    }
   }
 
   getX(){
