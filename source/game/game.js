@@ -35,10 +35,14 @@ function gameLoop(){
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
 
+
+    PLAYER.move()
+    ENEMY.follow()
     if(hasObjectsCollision(PLAYER, COINBLOCK)){
       PLAYER.score += 1;
       COINBLOCK.spawnCoin();
     }
+
 
     scoreDraw();
     PLAYER.score -=0.001
