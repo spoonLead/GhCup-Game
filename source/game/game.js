@@ -6,6 +6,7 @@ var screen;
 var gameFlag = true;
 var SCENE;
 var PLAYER;
+var COINBLOCK;
 
 function init(){
   canvas = document.getElementById("canvas"); //конвенция
@@ -13,7 +14,7 @@ function init(){
 
   SCENE = new Scene();
   SCENE.addObject(PLAYER = new Player());
-  SCENE.addObject(coinBlock = new CoinBlock());
+  SCENE.addObject(COINBLOCK = new CoinBlock());
   SCENE.addObject(enemy = new Enemy());
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
@@ -32,13 +33,20 @@ function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
-    SCENE.process()
+
+    if(hasObjectsCollision(PLAYER, COINBLOCK){
+      PLAYER.score += 1;
+      COINBLOCK.spawnCoin();
+    }
+
+
+    SCENE.processAI()
 
     scoreDraw();
     PLAYER.score -=0.001
     if (PLAYER.score > PLAYER.maxScore){PLAYER.maxScore = PLAYER.score;}
   }
-  else{gameOver();}
+  else{gameOver(); scoreDraw()}
 
   requestAnimationFrame(gameLoop);  //ограничивает fps
 }
