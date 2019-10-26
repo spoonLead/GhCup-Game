@@ -64,6 +64,14 @@ function getPLAYERIdFromSCENE(){
   return SCENE.objectsGroup.indexOf(PLAYER)
 }
 
+function getLastDownedKey(){
+  this.lastDownedKey;
+  window.onkeydown = function(e){
+      this.lastDownedKey = e.keyCode
+  }
+  return this.lastDownedKey
+}
+
 function gameOver(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "50px Verdana";
