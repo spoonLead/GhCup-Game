@@ -1,5 +1,7 @@
-function keyListener(){
+function getLastDownedKey(){
+  this.lastDownedKey;
   window.onkeydown = function(e){
-    LAST_DOWN_KEY = e.keyCode;
+      this.lastDownedKey = e.keyCode
   }
+  return this.lastDownedKey
 }
