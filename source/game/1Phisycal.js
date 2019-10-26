@@ -7,14 +7,6 @@ class Phisycal{
   }
 
 
-  hasObjectsCollision(object1, object2){
-    if ((object1.x <= (object2.x + object2.width)) & (object1.x >= (object2.x - object1.width)) & (object1.y <= (object2.y + object2.width)) & (object1.y >= (object2.y - object1.height)))
-      return true
-    else
-      return false
-  }
-
-
   hasTopCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] instanceof objClass)

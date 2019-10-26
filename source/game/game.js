@@ -6,6 +6,7 @@ var screen;
 var gameFlag = true;
 var SCENE;
 var PLAYER;
+var ENEMY;
 var COINBLOCK;
 
 function init(){
@@ -15,7 +16,7 @@ function init(){
   SCENE = new Scene();
   SCENE.addObject(PLAYER = new Player());
   SCENE.addObject(COINBLOCK = new CoinBlock());
-  SCENE.addObject(enemy = new Enemy());
+  SCENE.addObject(ENEMY = new Enemy());
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
@@ -34,13 +35,10 @@ function gameLoop(){
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
 
-    if(hasObjectsCollision(PLAYER, COINBLOCK){
+    if(hasObjectsCollision(PLAYER, COINBLOCK)){
       PLAYER.score += 1;
       COINBLOCK.spawnCoin();
     }
-
-
-    SCENE.processAI()
 
     scoreDraw();
     PLAYER.score -=0.001
@@ -49,6 +47,13 @@ function gameLoop(){
   else{gameOver(); scoreDraw()}
 
   requestAnimationFrame(gameLoop);  //ограничивает fps
+}
+
+function hasObjectsCollision(object1, object2){
+  if ((object1.x <= (object2.x + object2.width)) & (object1.x >= (object2.x - object1.width)) & (object1.y <= (object2.y + object2.width)) & (object1.y >= (object2.y - object1.height)))
+    return true
+  else
+    return false
 }
 
 function getPLAYERIdFromSCENE(){
