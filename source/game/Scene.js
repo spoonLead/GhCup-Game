@@ -14,9 +14,4 @@ class Scene{
     }
   }
 
-  processAI(){
-    for(var i = 0; i < this.objectsGroup.length; i++){
-      this.objectsGroup[i].processAI()
-    }
-  }
 }
