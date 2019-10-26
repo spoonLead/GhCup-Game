@@ -2,7 +2,7 @@ window.onload = init;
 
 var canvas;
 var screen;
-var up,down,left,right, wallsHW;   //flags for control
+
 var gameFlag = true;
 var SCENE;
 var PLAYER;
@@ -30,7 +30,7 @@ function init(){
 
 function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
-  if (gameFlag == true /*& PLAYER.score > 0*/){
+  if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
     SCENE.process()
 
@@ -53,27 +53,6 @@ function gameOver(){
   screen.fillText("Game Over", 280, 200);
   //screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
 }
-
-
-//collision
-function move(){
-  for(var i=0; i<10; i++){
-    if((up == true) & (wallsY[i]+30==PLAYER.y) & (wallsX[i]>PLAYER.x-30) & (wallsX[i]<PLAYER.x+PLAYER.width)){
-      up = false;
-    }
-    if((down == true) & (wallsY[i]==PLAYER.y+PLAYER.height) & (wallsX[i]>PLAYER.x-30) & (wallsX[i]<PLAYER.x+PLAYER.width)){
-      down = false;
-    }
-    if((right == true) & (wallsX[i]==PLAYER.x+PLAYER.width) & (wallsY[i]>PLAYER.y-30) & (wallsY[i]<PLAYER.y+PLAYER.height)){
-      right = false;
-    }
-    if((left == true) & (wallsX[i]==PLAYER.x-30) & (wallsY[i]>PLAYER.y-30) & (wallsY[i]<PLAYER.y+PLAYER.height)){
-      left = false;
-    }
-  }
-  PLAYER.move();
-}
-
 
 function scoreDraw(){
   screen.fillStyle = "#F0F0F0";
