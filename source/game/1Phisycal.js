@@ -1,3 +1,4 @@
+//TODO make if smaller
 class Phisycal{
   constructor(){
     this.x;

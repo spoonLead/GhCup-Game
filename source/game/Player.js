@@ -1,5 +1,6 @@
 class Player extends Drawable{
   constructor(){
+    //TODO get player sprite from arguments
     super("img/PLAYER.jpg");
     this.x = 280;
     this.y = 400;
@@ -7,7 +8,6 @@ class Player extends Drawable{
     this.height = 50;
 
     this.speed = 10;
-    this.toWalls = false;
 
 
     this.maxScore = 1;
@@ -36,11 +36,4 @@ class Player extends Drawable{
       this.x += this.speed;
   }
 
-  getX(){
-    return this.x;
-  }
-
-  getY(){
-    return this.y;
-  }
 }

@@ -1,3 +1,4 @@
+//TODO extends Drawable
 class Wall{
   constructor(){
     this.x = this.getRandomX();
