@@ -63,10 +63,6 @@ function hasObjectsCollision(object1, object2){
     return false
 }
 
-function getPLAYERIdFromSCENE(){
-  return SCENE.objectsGroup.indexOf(PLAYER)
-}
-
 function getLastDownedKey(){
   this.lastDownedKey;
   window.onkeydown = function(e){
