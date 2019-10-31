@@ -63,6 +63,7 @@ function hasObjectsCollision(object1, object2){
     return false
 }
 
+//TODO make KeyTools.js* and move it to
 function getLastDownedKey(){
   this.lastDownedKey;
   window.onkeydown = function(e){

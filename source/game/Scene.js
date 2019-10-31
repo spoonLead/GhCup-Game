@@ -1,3 +1,4 @@
+//TODO make getObjectID()?
 class Scene{
   constructor(){
     this.objectsGroup = []
