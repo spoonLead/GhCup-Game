@@ -8,6 +8,17 @@ class Phisycal{
   }
 
 
+  //TODO move to Physical; rename to hasCollisionWith(object)
+  hasCollisionWithObj(object){
+    if ((this.x <= (object.x + object.width)) & (this.x >= (object.x - this.width)) & (this.y <= (object.y + object.width)) & (this.y >= (object.y - this.height)))
+      return true
+    else
+      return false
+  }
+
+
+
+
   hasTopCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] instanceof objClass)

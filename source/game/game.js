@@ -39,7 +39,7 @@ function gameLoop(){
     PLAYER.move()
     ENEMY.follow()
 
-    if(hasObjectsCollision(PLAYER, COINBLOCK)){
+    if(PLAYER.hasCollisionWithObj(COINBLOCK)){
       PLAYER.score += 1;
       COINBLOCK.spawnCoin();
     }
@@ -55,13 +55,6 @@ function gameLoop(){
 }
 
 
-//TODO move to Physical; rename to hasCollisionWith(object)
-function hasObjectsCollision(object1, object2){
-  if ((object1.x <= (object2.x + object2.width)) & (object1.x >= (object2.x - object1.width)) & (object1.y <= (object2.y + object2.width)) & (object1.y >= (object2.y - object1.height)))
-    return true
-  else
-    return false
-}
 
 //TODO make KeyTools.js* and move it to
 function getLastDownedKey(){
