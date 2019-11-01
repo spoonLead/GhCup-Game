@@ -8,7 +8,7 @@ class Phisycal{
   }
 
 
-  //TODO move to Physical; rename to hasCollisionWith(object)
+
   hasCollisionWithObj(object){
     if ((this.x <= (object.x + object.width)) & (this.x >= (object.x - this.width)) & (this.y <= (object.y + object.width)) & (this.y >= (object.y - this.height)))
       return true
