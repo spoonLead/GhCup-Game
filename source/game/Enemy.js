@@ -5,10 +5,7 @@ class Enemy extends Drawable{
     this.y = PLAYER.y + 150;
     this.width = 25;
     this.height = 22;
-
-    this.collision = false;
-    this.collisionRate = 0;
-
+    
     this.speed = 5; //  PX/Iteration
   }
 
@@ -26,10 +23,5 @@ class Enemy extends Drawable{
       this.y -= this.speed;
     }
     if (this.x<PLAYER.x+PLAYER.width & this.x>PLAYER.x-this.width & this.y < PLAYER.y+PLAYER.height & this.y > PLAYER.y-this.height){PLAYER.score -= 0.05}
-  }
-
-
-  draw(){
-    screen.drawImage(this.sprite, 0, 0, 25, 25, this.x, this.y, this.width, this.height);
   }
 }
