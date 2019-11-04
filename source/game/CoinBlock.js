@@ -1,12 +1,11 @@
-class CoinBlock{
+class CoinBlock extends Drawable{
   constructor(){
+    super("img/coin.png");
     this.x = 100;
     this.y = 100;
     this.width = 25;
     this.height = 25;
-    this.sprite = new Image();
-    this.sprite.src = "img/coin.png";
-
+    
     this.status;
   }
 
