@@ -1,6 +1,7 @@
 //TODO extends Drawable
-class Wall{
+class Wall extends Drawable{
   constructor(){
+    super("img/wall.jpg");
     this.x = this.getRandomX();
     this.y = this.getRandomY();
     this.width = 30;
@@ -9,11 +10,6 @@ class Wall{
 
   process(){
 
-  }
-
-  draw(){
-    screen.fillStyle = "#F0F0F0";
-    screen.fillRect(this.x, this.y, this.width, this.height);
   }
 
   getRandomX(){
