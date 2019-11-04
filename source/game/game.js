@@ -62,7 +62,7 @@ function gameOver(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "50px Verdana";
   screen.fillText("Game Over", 280, 200);
-  //screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
+  screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
 }
 
 function scoreDraw(){
