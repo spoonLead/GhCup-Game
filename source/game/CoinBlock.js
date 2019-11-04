@@ -5,12 +5,6 @@ class CoinBlock extends Drawable{
     this.y = 100;
     this.width = 25;
     this.height = 25;
-    
-    this.status;
-  }
-
-  draw(){
-      screen.drawImage(this.sprite, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
   }
 
   spawnCoin(){
