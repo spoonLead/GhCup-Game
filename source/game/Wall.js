@@ -1,4 +1,3 @@
-//TODO extends Drawable
 class Wall extends Drawable{
   constructor(){
     super("img/wall.jpg");
@@ -6,10 +5,6 @@ class Wall extends Drawable{
     this.y = this.getRandomY();
     this.width = 30;
     this.height = 30;
-  }
-
-  process(){
-
   }
 
   getRandomX(){
