@@ -6,7 +6,7 @@ class GameObj extends Drawable{
 
 
   getRandXResponseSize(){
-    maxX = getMaxX()
+    var maxX = this.getMaxX()
     return getRandomIntForMax(maxX)
   }
 
@@ -17,7 +17,7 @@ class GameObj extends Drawable{
 
 
   getRandYResponseSize(){
-    maxY = getMaxY()
+    var maxY = this.getMaxY()
     return getRandomIntForMax(maxY)
   }
 
