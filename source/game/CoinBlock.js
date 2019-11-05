@@ -1,15 +1,15 @@
-class CoinBlock extends Drawable{
+class CoinBlock extends GameObj{
   constructor(){
-    super("img/coin.png");
-    this.x = 100;
-    this.y = 100;
-    this.width = 25;
-    this.height = 25;
+    super("img/coin.png")
+    this.x = 100
+    this.y = 100
+    this.width = 25
+    this.height = 25
   }
 
   spawnCoin(){
-    this.x = Math.floor(Math.random() * (canvas.width - this.width));
-    this.y = Math.floor(Math.random() * (canvas.height - this.height));
+    this.x = this.getRandXResponseSize()
+    this.y = this.getRandYResponseSize()
     for (var i = 0; i < SCENE.objectsGroup.length; i++){
 
       if(SCENE.objectsGroup[i] == wall){
