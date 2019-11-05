@@ -1,13 +1,27 @@
 class GameObj extends Drawable{
   constructor(imagePath){
-    super(imagePath);
+    super(imagePath)
   }
+
+
 
   getRandXResponseSize(){
-    return Math.floor(Math.random() * (canvas.width - this.width));
+    maxX = getMaxX()
+    return getRandomIntForMax(maxX)
   }
 
+  getMaxX(){
+    return canvas.width - this.width
+  }
+
+
+
   getRandYResponseSize(){
-    return Math.floor(Math.random() * (canvas.height - this.height));
+    maxY = getMaxY()
+    return getRandomIntForMax(maxY)
+  }
+
+  getMaxY(){
+    return canvas.height - this.height
   }
 }
