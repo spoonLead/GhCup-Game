@@ -15,7 +15,7 @@ class CoinBlock extends GameObj{
       if(SCENE.objectsGroup[i] == wall){
         wall = SCENE.objectsGroup[i]
         if ((this.x < wall.x+30) & (this.x > wall.x-this.width) & (this.y < wall.y+30) & (this.y > wall.y-this.height))
-          coin.spawncoin()
+          this.spawnCoin()
       }
 
     }
