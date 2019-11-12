@@ -9,12 +9,33 @@ class Phisycal{
 
 
 
+
+
+  hasCollisionWithClassOfObj(objClass){
+    for(var i = 0; i < SCENE.objectsGroup.length; i++){
+      if(SCENE.objectsGroup[i] instanceof objClass){
+         if(this.hasCollisionWithObj(SCENE.objectsGroup[i])){
+           console.log("coll")
+           return true
+         }
+
+      }
+    }
+  }
+
+
+
+
+
+
   hasCollisionWithObj(object){
     if ((this.x <= (object.x + object.width)) & (this.x >= (object.x - this.width)) & (this.y <= (object.y + object.width)) & (this.y >= (object.y - this.height)))
       return true
     else
       return false
   }
+
+
 
 
 
@@ -35,6 +56,7 @@ class Phisycal{
 
 
 
+
   hasDownCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] instanceof objClass)
@@ -51,6 +73,7 @@ class Phisycal{
 
 
 
+
   hasRightCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] instanceof objClass)
@@ -63,6 +86,7 @@ class Phisycal{
     if((object.x==this.x+this.width) & (object.y>this.y-object.height) & (object.y<this.y+this.height))
       return true
   }
+
 
 
 
