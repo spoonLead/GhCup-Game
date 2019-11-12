@@ -15,7 +15,7 @@ function init(){
 
   SCENE = new Scene();
   SCENE.addObject(PLAYER = new Player());
-  SCENE.addObject(COINBLOCK = new CoinBlock());
+  SCENE.addObject(COINBLOCK = new Coin());
   SCENE.addObject(ENEMY = new Enemy());
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
@@ -25,7 +25,6 @@ function init(){
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
   SCENE.addObject(wall = new Wall());
-
 
   gameLoop();       //игровой цикл
 }
