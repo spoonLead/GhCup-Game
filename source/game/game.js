@@ -4,27 +4,12 @@ var canvas;
 var screen;
 
 var gameFlag = true;
-var SCENE;
-var PLAYER;
-var ENEMY;
-var COINBLOCK;
 
 function init(){
   canvas = document.getElementById("canvas"); //конвенция
   screen = canvas.getContext("2d");
 
-  SCENE = new Scene();
-  SCENE.addObject(PLAYER = new Player());
-  SCENE.addObject(COINBLOCK = new Coin());
-  SCENE.addObject(ENEMY = new Enemy());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
+  loadLevelTest();
 
   gameLoop();       //игровой цикл
 }
