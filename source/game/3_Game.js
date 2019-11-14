@@ -3,6 +3,20 @@ var SCENE = new Scene();
 
 function gameLoop(){
   clearCanvas()
+  gameLogic()
+  frameLimiter(gameLoop)
+}
+
+
+
+function clearCanvas(){
+  screen.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+
+
+
+function gameLogic(){
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
 
@@ -22,11 +36,6 @@ function gameLoop(){
   }
   else{gameOver(); scoreDraw()}
 
-  requestAnimationFrame(gameLoop);  //ограничивает fps
-}
-
-function clearCanvas(){
-  screen.clearRect(0, 0, canvas.width, canvas.height)
 }
 
 
@@ -37,8 +46,17 @@ function gameOver(){
   screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
 }
 
+
 function scoreDraw(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "20px Verdana";
   screen.fillText("Player score: "+ PLAYER.score.toFixed(3) , 10, 20);
+}
+
+
+
+
+
+function frameLimiter(gameLoop){
+  requestAnimationFrame(gameLoop);  //ограничивает fps
 }
