@@ -2,7 +2,7 @@ var gameFlag = true;
 var SCENE = new Scene();
 
 function gameLoop(){
-  screen.clearRect(0, 0, canvas.width, canvas.height);
+  clearCanvas()
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
 
@@ -25,7 +25,9 @@ function gameLoop(){
   requestAnimationFrame(gameLoop);  //ограничивает fps
 }
 
-
+function clearCanvas(){
+  screen.clearRect(0, 0, canvas.width, canvas.height)
+}
 
 
 function gameOver(){
