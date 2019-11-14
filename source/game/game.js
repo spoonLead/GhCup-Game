@@ -1,15 +1,5 @@
-window.onload = init;
-
-var canvas;
-var screen;
-
 var gameFlag = true;
 
-function init(){
-  canvasAndScreenDifintion()
-  loadLevelTest()
-  gameLoop()       //игровой цикл
-}
 
 function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
@@ -36,10 +26,6 @@ function gameLoop(){
 }
 
 
-function canvasAndScreenDifintion(){
-  canvas = document.getElementById("canvas") //конвенция
-  screen = canvas.getContext("2d");
-}
 
 
 function gameOver(){
