@@ -6,12 +6,9 @@ var screen;
 var gameFlag = true;
 
 function init(){
-  canvas = document.getElementById("canvas"); //конвенция
-  screen = canvas.getContext("2d");
-
-  loadLevelTest();
-
-  gameLoop();       //игровой цикл
+  canvasAndScreenDifintion()
+  loadLevelTest()
+  gameLoop()       //игровой цикл
 }
 
 function gameLoop(){
@@ -39,7 +36,10 @@ function gameLoop(){
 }
 
 
-
+function canvasAndScreenDifintion(){
+  canvas = document.getElementById("canvas") //конвенция
+  screen = canvas.getContext("2d");
+}
 
 
 function gameOver(){
