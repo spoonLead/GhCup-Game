@@ -1,5 +1,5 @@
 var gameFlag = true;
-
+var SCENE = new Scene();
 
 function gameLoop(){
   screen.clearRect(0, 0, canvas.width, canvas.height);
