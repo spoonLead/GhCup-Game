@@ -2,17 +2,10 @@ var gameFlag = true;
 var SCENE = new Scene();
 
 function gameLoop(){
-  clearCanvas()
-  gameLogic()
-  frameLimiter(gameLoop)
+  this.render()
+  this.gameLogic()
+  this.frameLimiter(gameLoop)
 }
-
-
-
-function clearCanvas(){
-  screen.clearRect(0, 0, canvas.width, canvas.height)
-}
-
 
 
 
