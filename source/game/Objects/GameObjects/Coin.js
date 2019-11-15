@@ -1,6 +1,7 @@
 class Coin extends GameObj{
   constructor(){
     super("img/coin.png")
+
     this.x = 100
     this.y = 100
     this.width = 25
@@ -17,6 +18,4 @@ class Coin extends GameObj{
       this.spawnCoin()
     }
   }
-
-
 }
