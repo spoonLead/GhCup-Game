@@ -1,3 +1,5 @@
+SCENE = new Scene()
+
 function loadLevelTest(){
   SCENE.addObject(PLAYER = new Player());
   SCENE.addObject(COINBLOCK = new Coin());

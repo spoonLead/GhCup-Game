@@ -1,16 +1,13 @@
 function gameLogic(){
   if (gameFlag == true & PLAYER.score > 0){
-    SCENE.draw()
-
-
     PLAYER.move()
     ENEMY.follow()
+
 
     if(PLAYER.hasCollisionWithObj(COINBLOCK)){
       PLAYER.score += 1;
       COINBLOCK.spawnCoin();
     }
-
 
     scoreDraw();
     PLAYER.score -=0.001
