@@ -13,13 +13,9 @@ class Phisycal{
 
   hasCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
-      if(SCENE.objectsGroup[i] instanceof objClass){
-         if(this.hasCollisionWithObj(SCENE.objectsGroup[i])){
-           console.log("coll")
+      if(SCENE.objectsGroup[i] instanceof objClass)
+         if(this.hasCollisionWithObj(SCENE.objectsGroup[i]))
            return true
-         }
-
-      }
     }
   }
 

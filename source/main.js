@@ -1,3 +1,105 @@
+window.onload = init;
+
+var canvas;
+var screen;
+
+function init(){
+  canvasAndScreenDifintion()
+  loadLevelTest()
+  gameLoop()       //игровой цикл
+}
+
+
+function canvasAndScreenDifintion(){
+  canvas = document.getElementById("canvas") //конвенция
+  screen = canvas.getContext("2d");
+}
+
+//TODO make getObjectID()?
+class Scene{
+  constructor(){
+    this.objectsGroup = []
+  }
+
+  addObject(object){
+    this.objectsGroup.push(object)
+  }
+
+  draw(){
+    for(var i = 0; i < this.objectsGroup.length; i++){
+      var obj = this.objectsGroup[i];
+      obj.draw(obj.x, obj.y, obj.width, obj.height)
+    }
+  }
+
+}
+
+var gameFlag = true;
+
+var SCENE = new Scene();
+
+function gameLoop(){
+  screen.clearRect(0, 0, canvas.width, canvas.height);
+  if (gameFlag == true & PLAYER.score > 0){
+    SCENE.draw()
+
+
+    PLAYER.move()
+    ENEMY.follow()
+
+    if(PLAYER.hasCollisionWithObj(COINBLOCK)){
+      PLAYER.score += 1;
+      COINBLOCK.spawnCoin();
+    }
+
+
+    scoreDraw();
+    PLAYER.score -=0.001
+    if (PLAYER.score > PLAYER.maxScore){PLAYER.maxScore = PLAYER.score;}
+  }
+  else{gameOver(); scoreDraw()}
+
+  requestAnimationFrame(gameLoop);  //ограничивает fps
+}
+
+
+
+
+function gameOver(){
+  screen.fillStyle = "#F0F0F0";
+  screen.font = "50px Verdana";
+  screen.fillText("Game Over", 280, 200);
+  screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
+}
+
+function scoreDraw(){
+  screen.fillStyle = "#F0F0F0";
+  screen.font = "20px Verdana";
+  screen.fillText("Player score: "+ PLAYER.score.toFixed(3) , 10, 20);
+}
+
+// var SCENE = new Scene();
+var PLAYER;
+var ENEMY;
+var COINBLOCK;
+
+
+function loadLevelTest(){
+  // SCENE = new Scene();
+  SCENE.addObject(PLAYER = new Player());
+  SCENE.addObject(COINBLOCK = new Coin());
+  SCENE.addObject(ENEMY = new Enemy());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+  SCENE.addObject(wall = new Wall());
+}
+
+//TODO make if smaller
 class Phisycal{
   constructor(){
     this.x;
@@ -5,6 +107,34 @@ class Phisycal{
     this.width;
     this.height;
   }
+
+
+
+
+
+  hasCollisionWithClassOfObj(objClass){
+    for(var i = 0; i < SCENE.objectsGroup.length; i++){
+      if(SCENE.objectsGroup[i] instanceof objClass)
+         if(this.hasCollisionWithObj(SCENE.objectsGroup[i]))
+           return true
+    }
+  }
+
+
+
+
+
+
+  hasCollisionWithObj(object){
+    if ((this.x <= (object.x + object.width)) & (this.x >= (object.x - this.width)) & (this.y <= (object.y + object.width)) & (this.y >= (object.y - this.height)))
+      return true
+    else
+      return false
+  }
+
+
+
+
 
 
   hasTopCollisionWithClassOfObj(objClass){
@@ -19,6 +149,7 @@ class Phisycal{
     if((object.y+object.height==this.y) & (object.x > this.x - object.width) & (object.x < this.x + this.width))
       return true
   }
+
 
 
 
@@ -39,6 +170,7 @@ class Phisycal{
 
 
 
+
   hasRightCollisionWithClassOfObj(objClass){
     for(var i = 0; i < SCENE.objectsGroup.length; i++){
       if(SCENE.objectsGroup[i] instanceof objClass)
@@ -51,6 +183,7 @@ class Phisycal{
     if((object.x==this.x+this.width) & (object.y>this.y-object.height) & (object.y<this.y+this.height))
       return true
   }
+
 
 
 
@@ -70,43 +203,6 @@ class Phisycal{
 
 }
 
-function CoinBlock(){
-  this.x = 100;
-  this.y = 100;
-  this.width = 25;
-  this.height = 25;
-  this.sprite = new Image();
-  this.sprite.src = "img/coin.png";
-
-  this.status;
-}
-
-CoinBlock.prototype.draw = function(){
-    screen.drawImage(this.sprite, 0, 0, 2000, 2100, this.x, this.y, this.width, this.height);
-}
-
-CoinBlock.prototype.process = function(){
-  this.takecoin();
-}
-
-CoinBlock.prototype.takecoin = function(){
-  if ((this.x <= (PLAYER.x + PLAYER.width)) & (this.x >= (PLAYER.x - this.width)) & (this.y <= (PLAYER.y + PLAYER.width)) & (this.y >= (PLAYER.y - this.height))){
-    PLAYER.score += 1;
-    this.spawnCoin();
-  }
-}
-
-CoinBlock.prototype.spawnCoin = function(){
-  this.x = Math.floor(Math.random() * (canvas.width - this.width));
-  this.y = Math.floor(Math.random() * (canvas.height - this.height));
-  for (var i = 0; i < SCENE.objectsGroup.length; i++){
-    if(SCENE.objectsGroup[i] == wall){
-      wall = SCENE.objectsGroup[i]
-      if ((this.x < wall.x+30) & (this.x > wall.x-this.width) & (this.y < wall.y+30) & (this.y > wall.y-this.height)) {console.log("test spawncoin"); coin.spawncoin();}
-    }
-  }
-}
-
 
 class Drawable extends Phisycal{
   constructor(imagePath){
@@ -116,7 +212,57 @@ class Drawable extends Phisycal{
   }
 
   draw(x, y, width, height){
-    screen.drawImage(this.sprite, 0, 0, 50, 50, x, y, width, height);
+    screen.drawImage(this.sprite, 0, 0, this.sprite.width, this.sprite.width, x, y, width, height);
+  }
+}
+
+class GameObj extends Drawable{
+  constructor(imagePath){
+    super(imagePath)
+  }
+
+
+
+  getRandXResponseSize(){
+    var maxX = this.getMaxX()
+    return getRandomIntForMax(maxX)
+  }
+
+  getMaxX(){
+    return canvas.width - this.width
+  }
+
+
+
+  getRandYResponseSize(){
+    var maxY = this.getMaxY()
+    return getRandomIntForMax(maxY)
+  }
+
+  getMaxY(){
+    return canvas.height - this.height
+  }
+}
+
+class Coin extends GameObj{
+  constructor(){
+    super("img/coin.png")
+
+    this.x = 100
+    this.y = 100
+    this.width = 25
+    this.height = 25
+  }
+
+
+
+  spawnCoin(){
+    this.x = this.getRandXResponseSize()
+    this.y = this.getRandYResponseSize()
+
+    if(this.hasCollisionWithClassOfObj(Wall)){
+      this.spawnCoin()
+    }
   }
 }
 
@@ -127,16 +273,8 @@ class Enemy extends Drawable{
     this.y = PLAYER.y + 150;
     this.width = 25;
     this.height = 22;
-
-    this.collision = false;
-    this.collisionRate = 0;
-
+    
     this.speed = 5; //  PX/Iteration
-  }
-
-
-  process(){
-    this.follow()
   }
 
   follow(){
@@ -154,97 +292,64 @@ class Enemy extends Drawable{
     }
     if (this.x<PLAYER.x+PLAYER.width & this.x>PLAYER.x-this.width & this.y < PLAYER.y+PLAYER.height & this.y > PLAYER.y-this.height){PLAYER.score -= 0.05}
   }
+}
+
+class Player extends Drawable{
+  constructor(){
+    //TODO get player sprite from arguments
+    super("img/PLAYER.jpg");
+    this.x = 280;
+    this.y = 400;
+    this.width = 50;
+    this.height = 50;
+
+    this.speed = 10;
 
 
-  draw(){
-    screen.drawImage(this.sprite, 0, 0, 25, 25, this.x, this.y, this.width, this.height);
+    this.maxScore = 1;
+    this.score = 1;
   }
-}
 
-window.onload = init;
+  move(){
+    // GO UP
+    if(getLastDownedKey() == 38 & this.y>0)
+      if(! this.hasTopCollisionWithClassOfObj(Wall))
+        this.y -= this.speed;
 
-var canvas;
-var screen;
-var up,down,left,right, wallsHW;   //flags for control
-var gameFlag = true;
-var LAST_DOWN_KEY = 30;
-var SCENE;
-var PLAYER;
+      //GO DOWN
+    if(getLastDownedKey() == 40 & this.y<(canvas.height - this.height))
+      if(! this.hasDownCollisionWithClassOfObj(Wall))
+        this.y += this.speed;
 
-function init(){
-  canvas = document.getElementById("canvas"); //конвенция
-  screen = canvas.getContext("2d");
+    // GO LEFT
+    if(getLastDownedKey() == 37 & this.x>0)
+      if(! this.hasLeftCollisionWithClassOfObj(Wall))
+        this.x -= this.speed;
 
-  SCENE = new Scene();
-  SCENE.addObject(PLAYER = new Player());
-  SCENE.addObject(coinBlock = new CoinBlock());
-  SCENE.addObject(enemy = new Enemy());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-  SCENE.addObject(wall = new Wall());
-
-
-  gameLoop();       //игровой цикл
-}
-
-function gameLoop(){
-  screen.clearRect(0, 0, canvas.width, canvas.height);
-  console.log(getLastDownedKey());
-  //move();
-  if (gameFlag == true /*& PLAYER.score > 0*/){
-    SCENE.draw()
-    SCENE.process()
-
-    scoreDraw();
-    PLAYER.score -=0.001
-    if (PLAYER.score > PLAYER.maxScore){PLAYER.maxScore = PLAYER.score;}
+    //GO RIGHT
+    if(getLastDownedKey() == 39 & this.x<canvas.width - this.width)
+      if(! this.hasRightCollisionWithClassOfObj(Wall))
+      this.x += this.speed;
   }
-  else{gameOver();}
 
-  requestAnimationFrame(gameLoop);  //ограничивает fps
 }
 
-function getPLAYERIdFromSCENE(){
-  return SCENE.objectsGroup.indexOf(PLAYER)
-}
-
-function gameOver(){
-  screen.fillStyle = "#F0F0F0";
-  screen.font = "50px Verdana";
-  screen.fillText("Game Over", 280, 200);
-  //screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
-}
-
-
-//collision
-function move(){
-  for(var i=0; i<10; i++){
-    if((up == true) & (wallsY[i]+30==PLAYER.y) & (wallsX[i]>PLAYER.x-30) & (wallsX[i]<PLAYER.x+PLAYER.width)){
-      up = false;
-    }
-    if((down == true) & (wallsY[i]==PLAYER.y+PLAYER.height) & (wallsX[i]>PLAYER.x-30) & (wallsX[i]<PLAYER.x+PLAYER.width)){
-      down = false;
-    }
-    if((right == true) & (wallsX[i]==PLAYER.x+PLAYER.width) & (wallsY[i]>PLAYER.y-30) & (wallsY[i]<PLAYER.y+PLAYER.height)){
-      right = false;
-    }
-    if((left == true) & (wallsX[i]==PLAYER.x-30) & (wallsY[i]>PLAYER.y-30) & (wallsY[i]<PLAYER.y+PLAYER.height)){
-      left = false;
-    }
+class Wall extends Drawable{
+  constructor(){
+    super("img/wall.jpg");
+    this.x = this.getRandomX();
+    this.y = this.getRandomY();
+    this.width = 30;
+    this.height = 30;
   }
-  PLAYER.move();
-}
 
+  getRandomX(){
+    return ((Math.floor(((Math.random() * (canvas.width - PLAYER.width))/PLAYER.speed)))*PLAYER.speed)
+  }
 
-function scoreDraw(){
-  screen.fillStyle = "#F0F0F0";
-  screen.font = "20px Verdana";
-  screen.fillText("Player score: "+ PLAYER.score.toFixed(3) , 10, 20);
+  getRandomY(){
+    return ((Math.floor(((Math.random() * (canvas.height - PLAYER.height))/PLAYER.speed)))*PLAYER.speed)
+  }
 }
 
 function getLastDownedKey(){
@@ -255,104 +360,7 @@ function getLastDownedKey(){
   return this.lastDownedKey
 }
 
-class Player extends Drawable{
-  constructor(){
-    super("img/PLAYER.jpg");
-    this.x = 280;
-    this.y = 400;
-    this.width = 50;
-    this.height = 50;
-
-    this.speed = 10;
-    this.toWalls = false;
-
-
-    this.maxScore = 1;
-    this.score = 1;
-  }
-
-  process(){
-    //if(this.hasTopCollisionWithClassOfObj(Wall)) console.log('top')
-    //if(this.hasDownCollisionWithClassOfObj(Wall)) console.log('down')
-    //if(this.hasRightCollisionWithClassOfObj(Wall)) console.log('right')
-    //if(this.hasLeftCollisionWithClassOfObj(Wall)) console.log('left')
-    this.move();
-  }
-
-  move(){
-    // GO UP
-    if(getLastDownedKey() == 38 & this.y>0){
-      this.y -= this.speed;
-      }
-      //GO DOWN
-    if(getLastDownedKey() == 40 & this.y<(canvas.height - this.height)){
-      this.y += this.speed;
-    }
-    // GO LEFT
-    if(getLastDownedKey() == 37 & this.x>0){
-      this.x -= this.speed;
-    }
-    //GO RIGHT
-    if(getLastDownedKey() == 39 & this.x<canvas.width - this.width){
-      this.x += this.speed;
-    }
-  }
-
-  getX(){
-    return this.x;
-  }
-
-  getY(){
-    return this.y;
-  }
-}
-
-class Scene{
-  constructor(){
-    this.objectsGroup = []
-  }
-
-  addObject(object){
-    this.objectsGroup.push(object)
-  }
-
-  draw(){
-    for(var i = 0; i < this.objectsGroup.length; i++){
-      var obj = this.objectsGroup[i];
-      obj.draw(obj.x, obj.y, obj.width, obj.height)
-    }
-  }
-
-  process(){
-    for(var i = 0; i < this.objectsGroup.length; i++){
-      this.objectsGroup[i].process()
-    }
-  }
-}
-
-class Wall{
-  constructor(){
-    this.x = this.getRandomX();
-    this.y = this.getRandomY();
-    this.width = 30;
-    this.height = 30;
-  }
-
-  process(){
-
-  }
-
-  draw(){
-    screen.fillStyle = "#F0F0F0";
-    screen.fillRect(this.x, this.y, this.width, this.height);
-  }
-
-  getRandomX(){
-    return ((Math.floor(((Math.random() * (canvas.width - PLAYER.width))/PLAYER.speed)))*PLAYER.speed)
-  }
-
-  getRandomY(){
-    return ((Math.floor(((Math.random() * (canvas.height - PLAYER.height))/PLAYER.speed)))*PLAYER.speed)
-  }
+function getRandomIntForMax(max){
+    return Math.floor(Math.random() * max)
 }
 
