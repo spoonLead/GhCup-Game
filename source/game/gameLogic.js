@@ -1,7 +1,3 @@
-var gameFlag = true;
-var SCENE = new Scene();
-
-
 function gameLogic(){
   if (gameFlag == true & PLAYER.score > 0){
     SCENE.draw()
