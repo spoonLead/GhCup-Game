@@ -3,11 +3,21 @@ window.onload = init;
 var canvas;
 var screen;
 
+var SCENE;
+var PLAYER;
+var ENEMY;
+var COINBLOCK;
+
+var gameFlag = true;
+
+
+
 function init(){
   canvasAndScreenDifintion()
-  loadLevelTest()
+  loadStartLevel()
   gameLoop()       //игровой цикл
 }
+
 
 
 function canvasAndScreenDifintion(){
@@ -15,7 +25,28 @@ function canvasAndScreenDifintion(){
   screen = canvas.getContext("2d");
 }
 
+
+
+
+function loadStartLevel(){
+  this.loadLevelTest()
+}
+
+
+
+
+function gameLoop(){
+  this.render()
+  this.gameLogic()
+  this.frameLimiter(gameLoop)
+}
+
+function frameLimiter(gameLoop){
+  requestAnimationFrame(gameLoop);  //ограничивает fps
+}
+
 //TODO make getObjectID()?
+
 class Scene{
   constructor(){
     this.objectsGroup = []
@@ -34,24 +65,25 @@ class Scene{
 
 }
 
-var gameFlag = true;
+function render(){
+  this.clearCanvas()
+  SCENE.draw()
+}
 
-var SCENE = new Scene();
+function clearCanvas(){
+  screen.clearRect(0, 0, canvas.width, canvas.height)
+}
 
-function gameLoop(){
-  screen.clearRect(0, 0, canvas.width, canvas.height);
+function gameLogic(){
   if (gameFlag == true & PLAYER.score > 0){
-    SCENE.draw()
-
-
     PLAYER.move()
     ENEMY.follow()
+
 
     if(PLAYER.hasCollisionWithObj(COINBLOCK)){
       PLAYER.score += 1;
       COINBLOCK.spawnCoin();
     }
-
 
     scoreDraw();
     PLAYER.score -=0.001
@@ -59,10 +91,7 @@ function gameLoop(){
   }
   else{gameOver(); scoreDraw()}
 
-  requestAnimationFrame(gameLoop);  //ограничивает fps
 }
-
-
 
 
 function gameOver(){
@@ -72,20 +101,16 @@ function gameOver(){
   screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
 }
 
+
 function scoreDraw(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "20px Verdana";
   screen.fillText("Player score: "+ PLAYER.score.toFixed(3) , 10, 20);
 }
 
-// var SCENE = new Scene();
-var PLAYER;
-var ENEMY;
-var COINBLOCK;
-
+SCENE = new Scene()
 
 function loadLevelTest(){
-  // SCENE = new Scene();
   SCENE.addObject(PLAYER = new Player());
   SCENE.addObject(COINBLOCK = new Coin());
   SCENE.addObject(ENEMY = new Enemy());
