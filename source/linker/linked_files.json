@@ -5,16 +5,16 @@
 	"Phisycal obj": "../game/Objects/1_Phisycal.js",
 	"Drawable obj": "../game/Objects/2_Drawable.js",
 	"GameObject": "../game/Objects/3_GameObject.js",
-	
+	"Scene": "../game/2_Scene.js",
+
+	"Test Level": "../game/Levels/LevelTest.js",
+
 	"Object_Coin": "../game/Objects/GameObjects/Coin.js",
 	"Object_Enemy": "../game/Objects/GameObjects/Enemy.js",
 	"Object_Player": "../game/Objects/GameObjects/Player.js",
 	"Object_Wall": "../game/Objects/GameObjects/Wall.js",
-	
-	"Test Level": "../game/Levels/LevelTest.js",
 
 	"Init": "../game/1_Init.js",
-	"Scene": "../game/2_Scene.js",
 	"Render": "../game/3_render.js",
 	"Logic": "../game/4gameLogic.js"
 }
