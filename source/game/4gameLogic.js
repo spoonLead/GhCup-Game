@@ -6,19 +6,19 @@ function gameLogic(){
 
     // Player take coin
     if(PLAYER.hasCollisionWithObj(COINBLOCK)){
-      PLAYER.score += 1;
+      PLAYER.incrementScore(1);
       COINBLOCK.spawnCoin();
     }
 
 
     // Enemy caught up the player
     if(ENEMY.hasCollisionWithObj(PLAYER)){
-         PLAYER.score -= 0.05
+         PLAYER.decrementScore(0.05);
     }
 
 
+    PLAYER.decrementScore(0.001)
 
-    PLAYER.score -=0.001
     if (PLAYER.score > PLAYER.maxScore){PLAYER.maxScore = PLAYER.score;}
      scoreDraw()
   }

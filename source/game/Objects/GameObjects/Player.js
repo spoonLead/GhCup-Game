@@ -36,4 +36,12 @@ class Player extends Drawable{
       this.x += this.speed;
   }
 
+  incrementScore(count){
+       this.score += count;
+ }
+
+  decrementScore(count){
+      this.score -= count;
+ }
+
 }
