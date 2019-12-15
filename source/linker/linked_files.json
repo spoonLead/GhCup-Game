@@ -2,10 +2,10 @@
 	"Tools_Input": "../game/Tools/InputTools.js",
 	"Tools_Math": "../game/Tools/MathTools.js",
 
-	"Phisycal obj": "../game/Objects/1_Phisycal.js",
-	"Drawable obj": "../game/Objects/2_Drawable.js",
-	"GameObject": "../game/Objects/3_GameObject.js",
-	"Scene": "../game/2_Scene.js",
+	"Phisycal obj": "../game/Objects/Phisycal.js",
+	"Drawable obj": "../game/Objects/Drawable.js",
+	"GameObject": "../game/Objects/GameObject.js",
+	"Scene": "../game/Scene.js",
 
 	"Test Level": "../game/Levels/LevelTest.js",
 
@@ -14,7 +14,7 @@
 	"Object_Player": "../game/Objects/GameObjects/Player.js",
 	"Object_Wall": "../game/Objects/GameObjects/Wall.js",
 
-	"Init": "../game/1_Init.js",
-	"Render": "../game/3_render.js",
-	"Logic": "../game/4gameLogic.js"
+	"Init": "../game/Init.js",
+	"Render": "../game/render.js",
+	"Logic": "../game/gameLogic.js"
 }
