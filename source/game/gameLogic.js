@@ -1,5 +1,5 @@
 function gameLogic(){
-  if (gameFlag == true & PLAYER.score > 0){
+  if (gameFlag == true & PLAYER.currentScore > 0){
     PLAYER.move()
     ENEMY.follow()
 
@@ -16,10 +16,12 @@ function gameLogic(){
          PLAYER.decrementScore(0.05);
     }
 
-
+    // Permanent decrease of current score
     PLAYER.decrementScore(0.001)
 
-    if (PLAYER.score > PLAYER.maxScore){PLAYER.maxScore = PLAYER.score;}
+
+    PLAYER.updateMaxScore()
+
      scoreDraw()
   }
   else{gameOver();}
@@ -38,5 +40,5 @@ function gameOver(){
 function scoreDraw(){
   screen.fillStyle = "#F0F0F0";
   screen.font = "20px Verdana";
-  screen.fillText("Player score: "+ PLAYER.score.toFixed(3) , 10, 20);
+  screen.fillText("Player score: "+ PLAYER.currentScore.toFixed(3) , 10, 20);
 }

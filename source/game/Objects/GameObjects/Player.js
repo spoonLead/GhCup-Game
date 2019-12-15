@@ -11,7 +11,7 @@ class Player extends Drawable{
 
 
     this.maxScore = 1;
-    this.score = 1;
+    this.currentScore = 1;
   }
 
   move(){
@@ -36,12 +36,20 @@ class Player extends Drawable{
       this.x += this.speed;
   }
 
+
+
+  updateMaxScore(){
+       if (this.currentScore > this.maxScore)
+            this.maxScore = this.currentScore
+ }
+
+
   incrementScore(count){
-       this.score += count;
+       this.currentScore += count;
  }
 
   decrementScore(count){
-      this.score -= count;
+      this.currentScore -= count;
  }
 
 }
