@@ -6,6 +6,29 @@ function getLastDownedKey(){
   return this.lastDownedKey
 }
 
+function isMouseDown(){
+     this.mouseDown
+     this.onmousedown = function(e){
+          this.mouseDown = true;
+     }
+     this.onmouseup = function(e){
+          this.mouseDown = false;
+     }
+     return this.mouseDown;
+}
+
+
+function isMouseUp(){
+     this.mouseUp;
+     this.onmouseup = function(e){
+          this.mouseUp= true;
+     }
+     this.onmousedown = function(e){
+          this.mouseUp = false;
+     }
+     return this.mouseUp;
+}
+
 function getMouseX(){
      this.mouseX;
      this.onmousemove = function(e){
