@@ -6,43 +6,45 @@ function getLastDownedKey(){
   return this.lastDownedKey
 }
 
+
+
+//--------MOUSE-EVENTS-------
+var mouseDown = false;
+var mouseUp = false;
+var mouseX = 0;
+var mouseY = 0;
+document.addEventListener('mousedown', mouseEventLister);
+document.addEventListener('mouseup', mouseEventLister);
+document.addEventListener('mousemove', mouseEventLister)
+function mouseEventLister(e){
+     if(event.type == 'mousedown'){
+          mouseDown = true
+          mouseUp = false
+     }
+     if(event.type == 'mouseup'){
+          mouseUp = true
+          mouseDown = false
+     }
+     if(event.type == 'mousemove' & event.target == canvas){
+          mouseX = event.clientX - event.target.offsetLeft
+          mouseY = event.clientY - event.target.offsetTop;
+     }
+}
+
+
 function isMouseDown(){
-     this.mouseDown
-     this.onmousedown = function(e){
-          this.mouseDown = true;
-     }
-     this.onmouseup = function(e){
-          this.mouseDown = false;
-     }
-     return this.mouseDown;
+     return mouseDown
 }
 
 
 function isMouseUp(){
-     this.mouseUp;
-     this.onmouseup = function(e){
-          this.mouseUp= true;
-     }
-     this.onmousedown = function(e){
-          this.mouseUp = false;
-     }
-     return this.mouseUp;
+     return mouseUp
 }
 
 function getMouseX(){
-     this.mouseX;
-     this.onmousemove = function(e){
-          this.mouseX = e.clientX;
-     }
-     return this.mouseX;
+     return mouseX
 }
 
-
-
 function getMouseY(){
-     this.mouseY;
-     this.onmousemove = function(e){
-          this.mouseY = e.clientY;
-     }
-     return this.mouseY;
+     return mouseY
 }
