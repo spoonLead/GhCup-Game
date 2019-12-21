@@ -7,6 +7,6 @@ class Drawable extends Phisycal{
   }
 
   draw(x, y, width, height){
-    screen.drawImage(this.sprite, 0, 0, this.sprite.width, this.sprite.width, x, y, width, height);
+    screen.drawImage(this.sprite, 0, 0, this.sprite.width, this.sprite.height, x, y, width, height);
   }
 }
