@@ -11,9 +11,13 @@ class ButtonRestart extends Drawable{
           this.pressedHeight = height + 10
           this.uppedWidth = width
           this.uppedHeight = height
+
+          this.pressed
      }
 
      processing(){
+          this.calcPressed()
+          this.calcUpped()
           if(this.isPressed()){
                console.log("ispressed")
                this.width = this.pressedWidth
@@ -26,18 +30,27 @@ class ButtonRestart extends Drawable{
           }
      }
 
+     calcPressed(){
+          if(this.hasCollisionWithCoord(getMouseX(), getMouseY()) & isMouseDown() == true){
+               this.pressed = true
+          }
+     }
+
+     calcUpped(){
+          if(this.pressed & isMouseUp() == true){
+               this.pressed = false
+               this.upped = true
+          }
+          else if (this.pressed == false)
+               this.upped = false
+     }
+
      isPressed(){
-          if(this.hasCollisionWithCoord(getMouseX(), getMouseY()) & isMouseDown() == true)
-               return true
-          else
-               return false
+          return this.pressed
      }
 
      isUpped(){
-          if(this.hasCollisionWithCoord(getMouseX(), getMouseY()) & isMouseUp() == true)
-               return true
-          else
-               return false
+          return this.upped
      }
 
 }
