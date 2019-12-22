@@ -19,7 +19,6 @@ function gameLogic(){
     // Permanent decrease of current score
     PLAYER.decrementScore(0.001)
 
-
     PLAYER.updateMaxScore()
 
      scoreDraw()
@@ -28,12 +27,15 @@ function gameLogic(){
 
 }
 
-
 function gameOver(){
-  screen.fillStyle = "#F0F0F0";
-  screen.font = "50px Verdana";
-  screen.fillText("Game Over", 280, 200);
-  screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
+     screen.fillStyle = "#F0F0F0";
+     screen.font = "50px Verdana";
+     screen.fillText("Game Over", 280, 200);
+     screen.fillText("Your score = " + PLAYER.maxScore.toFixed(3), 190, 300);
+     BUTTON_RESTART.processing()
+     if(BUTTON_RESTART.isUpped())
+          PLAYER.currentScore = 2
+     BUTTON_RESTART.draw()
 }
 
 

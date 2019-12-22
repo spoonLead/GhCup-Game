@@ -9,6 +9,8 @@
 
 	"Test Level": "../game/Levels/LevelTest.js",
 
+	"Interface Button": "../game/Interface/Button.js",
+
 	"Object_Coin": "../game/Objects/GameObjects/Coin.js",
 	"Object_Enemy": "../game/Objects/GameObjects/Enemy.js",
 	"Object_Player": "../game/Objects/GameObjects/Player.js",

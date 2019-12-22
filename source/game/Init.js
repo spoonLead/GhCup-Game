@@ -7,6 +7,7 @@ var SCENE;
 var PLAYER;
 var ENEMY;
 var COINBLOCK;
+var BUTTON_RESTART;
 
 var gameFlag = true;
 
