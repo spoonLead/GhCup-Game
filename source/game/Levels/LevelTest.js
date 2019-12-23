@@ -1,7 +1,7 @@
 SCENE = new Scene()
 
 function loadLevelTest(){
-     BUTTON_RESTART = new ButtonRestart(100, 100, 192, 48)
+     BUTTON_RESTART = new ButtonRestart(304, 350, 192, 48)
 
      SCENE.addObject(PLAYER = new Player());
      SCENE.addObject(COINBLOCK = new Coin());
