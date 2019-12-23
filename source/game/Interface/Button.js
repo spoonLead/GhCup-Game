@@ -7,24 +7,34 @@ class ButtonRestart extends Drawable{
           this.height = height
 
 
-          this.pressedWidth = width + 10
-          this.pressedHeight = height + 10
+          this.pressedX = x - 4
+          this.pressedY = y - 1
+          this.pressedWidth = width + 8
+          this.pressedHeight = height + 2
+
+          this.uppedX = x
+          this.uppedY = y
           this.uppedWidth = width
           this.uppedHeight = height
 
-          this.pressed
+          this.pressed = false
      }
 
      processing(){
+          console.log("processing " + this.x + " " + this.y + " " + this.width +" "+ this.height)
           this.calcPressed()
           this.calcUpped()
           if(this.isPressed()){
                console.log("ispressed")
+               this.x = this.pressedX
+               this.y = this.pressedY
                this.width = this.pressedWidth
                this.height = this.pressedHeight
           }
           if(this.isUpped()){
-               console.log("is upped")
+               console.log("is upped" + this.x + " " + this.y + " " + this.width +" "+ this.height)
+               this.x = this.uppedX
+               this.y = this.uppedY
                this.width = this.uppedWidth
                this.height = this.uppedHeight
           }
