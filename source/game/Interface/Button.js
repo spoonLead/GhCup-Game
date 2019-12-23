@@ -1,11 +1,10 @@
 class ButtonRestart extends Drawable{
-     constructor(x, y, width, height){
-          super("img/button_restart.png")
+     constructor(x, y, width, height, sprite){
+          super(sprite)
           this.x = x
           this.y = y
           this.width = width
           this.height = height
-
 
           this.pressedX = x - 4
           this.pressedY = y - 1
@@ -17,22 +16,23 @@ class ButtonRestart extends Drawable{
           this.uppedWidth = width
           this.uppedHeight = height
 
-          this.pressed = false
+          this.state = {
+               pressed: false,
+               upped: false
+          }
+
      }
 
      processing(){
-          console.log("processing " + this.x + " " + this.y + " " + this.width +" "+ this.height)
           this.calcPressed()
           this.calcUpped()
           if(this.isPressed()){
-               console.log("ispressed")
                this.x = this.pressedX
                this.y = this.pressedY
                this.width = this.pressedWidth
                this.height = this.pressedHeight
           }
           if(this.isUpped()){
-               console.log("is upped" + this.x + " " + this.y + " " + this.width +" "+ this.height)
                this.x = this.uppedX
                this.y = this.uppedY
                this.width = this.uppedWidth
@@ -41,26 +41,25 @@ class ButtonRestart extends Drawable{
      }
 
      calcPressed(){
-          if(this.hasCollisionWithCoord(getMouseX(), getMouseY()) & isMouseDown() == true){
-               this.pressed = true
-          }
+          if(this.hasCollisionWithCoord(getMouseX(), getMouseY()) & isMouseDown() == true)
+               this.state.pressed = true
      }
 
      calcUpped(){
-          if(this.pressed & isMouseUp() == true){
-               this.pressed = false
-               this.upped = true
+          if(this.state.pressed & isMouseUp() == true){
+               this.state.pressed = false
+               this.state.upped = true
           }
-          else if (this.pressed == false)
-               this.upped = false
+          else
+               this.state.upped = false
      }
 
      isPressed(){
-          return this.pressed
+          return this.state.pressed
      }
 
      isUpped(){
-          return this.upped
+          return this.state.upped
      }
 
 }
